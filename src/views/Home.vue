@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>字段列表</h1>
+    <FiledList :fields="fileds" :data="fieldData"></FiledList>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
+/* eslint-disable */
+import { Component, Vue } from 'vue-property-decorator'
+import FiledList from '@/components/FieldList/index.vue'
+import {  IField, tFieldListData } from '@/components/FieldList/types'
 
-export default {
-  name: 'Home',
+@Component({
   components: {
-    HelloWorld
+    FiledList
+  }
+})
+export default class Home extends Vue {
+  fileds: IField[] = [
+    { prop: 'name', label: '名称'},
+    { prop: 'age', label: '年龄'},
+    { prop: 'sex', label: '性别'}
+  ]
+
+  fieldData: tFieldListData<any> = {
+    name: 'Alex',
+    age: 32,
+    sex: '男'
   }
 }
 </script>
